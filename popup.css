@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe6f2 0%, #f0f8ff 100%);
+    width: 350px;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header h1 {
+    color: #ff6b9d;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+    margin-bottom: 10px;
+}
+
+.smiski-character {
+    font-size: 40px;
+    animation: bounce 2s infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.timer-display {
+    position: relative;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time {
+    position: absolute;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff6b9d;
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(255, 107, 157, 0.3);
+}
+
+.progress-ring {
+    position: relative;
+}
+
+.progress-ring-bg {
+    fill: none;
+    stroke: #ffe6f2;
+    stroke-width: 8;
+}
+
+.progress-ring-fill {
+    fill: none;
+    stroke: #ff6b9d;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset 0.3s ease;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #a8e6cf, #88d8c0);
+    color: white;
+}
+
+.btn-reset {
+    background: linear-gradient(45deg, #ffd3b6, #ffaaa5);
+    color: white;
+}
+
+.btn-settings {
+    background: linear-gradient(45deg, #d4a5a5, #c8a2c8);
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 8px 16px;
+    border: 2px solid #ff6b9d;
+    background: white;
+    color: #ff6b9d;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background: #ff6b9d;
+    color: white;
+    transform: scale(1.05);
+}
+
+.mode-btn.active {
+    background: #ff6b9d;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+}
+
+.stats {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 14px;
+}
+
+.stat-value {
+    color: #ff6b9d;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.settings {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+/* Animation for timer completion */
+@keyframes celebration {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.celebration {
+    animation: celebration 0.5s ease;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    body {
+        width: 320px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .time {
+        font-size: 28px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 120px;
+    }
+}
+
