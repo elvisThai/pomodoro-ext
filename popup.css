@@ -131,12 +131,6 @@ body {
     color: white;
 }
 
-.btn-settings {
-    background: linear-gradient(45deg, #d4a5a5, #c8a2c8);
-    color: white;
-    padding: 8px 12px;
-    font-size: 16px;
-}
 
 .mode-selector {
     display: flex;

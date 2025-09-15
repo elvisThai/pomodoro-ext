@@ -24,7 +24,6 @@ class SmiskiPomodoroTimer {
         this.smiskiCharacter = document.getElementById('smiskiCharacter');
         this.completedCountEl = document.getElementById('completedCount');
         this.todayCountEl = document.getElementById('todayCount');
-        this.settingsBtn = document.getElementById('settingsBtn');
         
         this.modeButtons = document.querySelectorAll('.mode-btn');
     }
@@ -33,7 +32,6 @@ class SmiskiPomodoroTimer {
         this.startBtn.addEventListener('click', () => this.startTimer());
         this.pauseBtn.addEventListener('click', () => this.pauseTimer());
         this.resetBtn.addEventListener('click', () => this.resetTimer());
-        this.settingsBtn.addEventListener('click', () => this.openSettings());
         
         this.modeButtons.forEach(btn => {
             btn.addEventListener('click', (e) => this.switchMode(e.target));
@@ -203,59 +201,6 @@ class SmiskiPomodoroTimer {
         });
     }
     
-    openSettings() {
-        // Create a simple settings modal
-        const modal = document.createElement('div');
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        `;
-        
-        const content = document.createElement('div');
-        content.style.cssText = `
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 300px;
-            width: 90%;
-        `;
-        
-        content.innerHTML = `
-            <h3 style="color: #ff6b9d; margin-bottom: 15px;">Settings</h3>
-            <p style="margin-bottom: 15px;">Smiski Timer v1.0.0</p>
-            <p style="margin-bottom: 15px;">Made with 💖 for productivity</p>
-            <button id="closeSettings" style="
-                background: #ff6b9d;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 20px;
-                cursor: pointer;
-            ">Close</button>
-        `;
-        
-        modal.appendChild(content);
-        document.body.appendChild(modal);
-        
-        document.getElementById('closeSettings').addEventListener('click', () => {
-            document.body.removeChild(modal);
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                document.body.removeChild(modal);
-            }
-        });
-    }
 }
 
 // Initialize the timer when the popup loads
