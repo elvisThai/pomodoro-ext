@@ -24,6 +24,7 @@ class SmiskiPomodoroTimer {
         this.smiskiCharacter = document.getElementById('smiskiCharacter');
         this.completedCountEl = document.getElementById('completedCount');
         this.todayCountEl = document.getElementById('todayCount');
+        this.closeBtn = document.getElementById('closeBtn');
         
         this.modeButtons = document.querySelectorAll('.mode-btn');
     }
@@ -32,9 +33,37 @@ class SmiskiPomodoroTimer {
         this.startBtn.addEventListener('click', () => this.startTimer());
         this.pauseBtn.addEventListener('click', () => this.pauseTimer());
         this.resetBtn.addEventListener('click', () => this.resetTimer());
+        this.closeBtn.addEventListener('click', () => this.closeTimer());
         
         this.modeButtons.forEach(btn => {
             btn.addEventListener('click', (e) => this.switchMode(e.target));
+        });
+        
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (this.isRunning) {
+                    this.pauseTimer();
+                } else {
+                    this.startTimer();
+                }
+            } else if (e.code === 'KeyR') {
+                e.preventDefault();
+                this.resetTimer();
+            } else if (e.code === 'Digit1') {
+                e.preventDefault();
+                const pomodoroBtn = document.querySelector('[data-mode="pomodoro"]');
+                this.switchMode(pomodoroBtn);
+            } else if (e.code === 'Digit2') {
+                e.preventDefault();
+                const shortBreakBtn = document.querySelector('[data-mode="shortBreak"]');
+                this.switchMode(shortBreakBtn);
+            } else if (e.code === 'Digit3') {
+                e.preventDefault();
+                const longBreakBtn = document.querySelector('[data-mode="longBreak"]');
+                this.switchMode(longBreakBtn);
+            }
         });
     }
     
@@ -106,6 +135,10 @@ class SmiskiPomodoroTimer {
         const circumference = 2 * Math.PI * 54;
         const offset = circumference - (progress * circumference);
         this.progressCircle.style.strokeDashoffset = offset;
+        
+        // Update page title with timer
+        const title = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} - Smiski Timer`;
+        document.title = title;
     }
     
     updateSmiskiCharacter(state = 'idle') {
@@ -201,10 +234,15 @@ class SmiskiPomodoroTimer {
         });
     }
     
+    closeTimer() {
+        // Close the current tab
+        chrome.tabs.getCurrent((tab) => {
+            chrome.tabs.remove(tab.id);
+        });
+    }
 }
 
-// Initialize the timer when the popup loads
+// Initialize the timer when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new SmiskiPomodoroTimer();
 });
-

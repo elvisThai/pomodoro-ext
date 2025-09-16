@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Smiski Pomodoro Timer",
+  "name": "Pomodoro Timer",
   "version": "1.0.0",
   "description": "A Smiski-themed Pomodoro timer to help you stay focused and productive!",
   "permissions": [
@@ -9,7 +9,6 @@
     "alarms"
   ],
   "action": {
-    "default_popup": "popup.html",
     "default_title": "Smiski Pomodoro Timer",
     "default_icon": {
       "16": "icons/icon16.png",

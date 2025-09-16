@@ -1,7 +1,7 @@
 {
   "name": "smiski-pomodoro-timer",
   "version": "1.0.0",
-  "description": "A cute Smiski-themed Pomodoro timer Chrome extension",
+  "description": "A Pomodoro timer Chrome extension",
   "main": "popup.js",
   "scripts": {
     "create-icons": "node create-icons.js",
