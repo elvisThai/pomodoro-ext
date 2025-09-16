@@ -132,7 +132,7 @@ class SmiskiPomodoroTimer {
         
         // Update progress ring
         const progress = 1 - (this.timeLeft / this.totalTime);
-        const circumference = 2 * Math.PI * 54;
+        const circumference = 2 * Math.PI * 81; // Updated radius for larger ring
         const offset = circumference - (progress * circumference);
         this.progressCircle.style.strokeDashoffset = offset;
         
